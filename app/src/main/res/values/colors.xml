@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="gray">#808080</color><!--灰色-->
+    <color name="lightslategray">#7B68EE</color><!--中暗藍色-->
+    <color name="mediumslateblue">#7B68EE</color><!--中暗藍色-->
+    <color name="slategray">#708090</color><!--灰石色-->
+    <color name="slateblue">#6A5ACD</color><!--石藍色-->
+    <color name="dimgray">#696969</color><!--暗灰色-->
+    <color name="digray">#282828</color><!--深灰色-->
+    <color name="cadetblue">#5F9EA0</color><!--軍蘭色-->
+    <color name="darkolivegreen">#556B2F</color><!--暗橄欖綠-->
+    <color name="indigo">#4B0082</color><!--靛青色-->
+    <color name="darkslateblue">#48D1CC</color><!--中綠寶石-->
+    <color name="steelblue">#4682B4</color><!--鋼蘭色-->
+    <color name="midnightblue">#191970</color><!--中灰蘭色-->
+    <color name="whith">#ffffff</color><!--白色-->
+    <color name="darkcyan">#008B8B</color><!--暗青色-->
+    <color name="blue">#0000FF</color> <!--藍色-->
+    <color name="navy">#000080</color><!--海軍色-->
+    <color name="darkblue">#00008B</color><!--暗藍色-->
+    <color name="dimblack">#212121</color><!--黑色-->
+    <!--/============================================/-->
+</resources>
