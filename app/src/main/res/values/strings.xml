@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
     <string name="app_name">WarehouseManagement</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>

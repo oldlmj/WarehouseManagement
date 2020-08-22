@@ -18,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.warehousemanagement.R;
 import com.example.warehousemanagement.ui.recyclerview.Fruit;
 import com.example.warehousemanagement.ui.recyclerview.FruitAdapter;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +29,7 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
     private RecyclerView mNewTitleRcyclerView;
     private ImageView mLastImageView;
+    FloatingActionButton btnAdd;
 
     @Override
     public void onStart() {
@@ -39,6 +42,7 @@ public class HomeFragment extends Fragment {
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.layout_recycler_view, container, false);
        // final TextView textView = root.findViewById(R.id.text_home);
+
         mNewTitleRcyclerView = (RecyclerView) root.findViewById(R.id.recycler_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -53,11 +57,9 @@ public class HomeFragment extends Fragment {
                 //textView.setText(s);
             }
         });
+
+
         return root;
-
-
-
-
     }
     private void initFruits() {
         for(int i = 0; i < 10; i++) {
