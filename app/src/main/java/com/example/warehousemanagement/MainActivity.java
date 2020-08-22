@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     //通過呼叫RightFragment中的getInstance方法傳修改文字
-        ItemFragment fragmentToDB =ItemFragment.newInstance(data);
+        FragmentToDB fragmentToDB =FragmentToDB.newInstance(data);
     //此時使用add方法會造成右側fragment中文字重疊（未設定BackGround時）
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.nav_host_fragment,fragmentToDB)
