@@ -2,22 +2,29 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:id="@+id/relativelayout_add_data"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="10dp" android:paddingRight="10dp" android:paddingTop="10dp">
+    android:background="@color/digray"
 
+    >
             <TextView
                 android:id="@+id/Text_Name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_marginTop="70dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="50dp"
+                android:textSize="23dp"
                 android:text="姓名："
+                android:textColor="@color/whith"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
             <EditText
                 android:id="@+id/editText_Name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
+                android:layout_marginTop="53dp"
                 android:layout_toRightOf="@id/Text_Name"
                 android:ems="10"
                 android:inputType="textPersonName" />
@@ -27,6 +34,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/Text_Name"
+                android:textSize="23dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="50dp"
+                android:textColor="@color/whith"
                 android:text="電話："
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
@@ -35,6 +46,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/Text_Phone"
+                android:layout_below="@id/editText_Name"
+                android:textSize="23dp"
+                android:textColor="@color/whith"
                 android:ems="10"/>
 
             <TextView
@@ -42,6 +56,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/Text_Phone"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="50dp"
+                android:textSize="23dp"
+                android:textColor="@color/whith"
                 android:text="興趣："
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
@@ -50,7 +68,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/Text_Hobby"
-                android:layout_weight="3"
+                android:layout_below="@id/editText_Phone"
+                android:textColor="@color/whith"
                 android:ems="10"
                 android:inputType="textPersonName" />
 
@@ -59,6 +78,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/Text_Hobby"
+                android:textSize="23dp"
+                android:textColor="@color/whith"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="50dp"
                 android:text="其他："
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
@@ -67,7 +90,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/Text_Else"
-                android:layout_weight="3"
+
+                android:layout_below="@id/editText_Hobby"
+
+                android:textColor="@color/whith"
                 android:ems="10"
                 android:inputType="textPersonName" />
 
@@ -78,7 +104,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:text="新增"
-        android:layout_below="@id/Text_Hobby"
+        android:layout_marginEnd="8dp"
+        android:layout_below="@id/editText_else"
         android:layout_toLeftOf="@id/button_Modify"
          />
 
@@ -89,7 +116,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:text="修改"
-        android:layout_below="@id/Text_Hobby"
+        android:layout_below="@id/editText_else"
         android:layout_toLeftOf="@id/button_Clear"
         app:layout_constraintEnd_toStartOf="@+id/button_Clear"
         app:layout_constraintStart_toEndOf="@+id/button_Create"
@@ -101,7 +128,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:text="清空顯示"
-        android:layout_below="@id/Text_Hobby"
+        android:layout_below="@id/editText_else"
         android:layout_alignParentRight="true"
     />
 

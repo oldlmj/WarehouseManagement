@@ -1,12 +1,22 @@
 package com.example.warehousemanagement;
 
+import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringDef;
+import androidx.fragment.app.Fragment;
 import  androidx.fragment.app.FragmentManager;
 import  androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.warehousemanagement.RoomDataBase.MyData;
+import com.example.warehousemanagement.ui.dashboard.DashboardFragment;
+import com.example.warehousemanagement.ui.home.HomeFragment;
+import com.example.warehousemanagement.ui.notifications.NotificationsFragment;
 import com.example.warehousemanagement.ui.recyclerview.FruitAdapter;
 import com.facebook.stetho.Stetho;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -16,21 +26,35 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-public class MainActivity extends AppCompatActivity {
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity  {
+    //當前顯示的fragment
+    private static final String CURRENT_FRAGMENT = "STATE_FRAGMENT_SHOW";
+    private FragmentToDB mFragmentToDB;
+    private Fragment currentFragment = new Fragment();
+    private List<Fragment> fragments = new ArrayList<>();
+    private int currentIndex = 0;
     FragmentManager fragmentManager;
-    FragmentTransaction fragmentTransaction;
+
     FruitAdapter fruitAdapter;
     MyData nowSelectedData;//取得在畫面上顯示中的資料內容
     FloatingActionButton fbtnAdd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         BottomNavigationView navView = findViewById(R.id.nav_view);
         Stetho.initializeWithDefaults(this);//設置資料庫監視
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
@@ -39,42 +63,51 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-        // 右下角那顆圓形新增
-        fbtnAdd = (FloatingActionButton) findViewById(R.id.fbtnAdd);
-        fbtnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                switchButton(0);
-                Snackbar snackbar = Snackbar
-                        .make(view, "是snackbar元件", Snackbar.LENGTH_LONG)
-                        .setAction("好的", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                // 按了「好的」要做的事寫在這裡..
 
-
-                            }
-                        });
-
-                snackbar.show(); //顯示snackbar
-
-            }
-        });
-
+   }
+    @Override
+    protected void onResume() {
+        super.onResume();
+//
+        Toast.makeText(this, "onResume", Toast.LENGTH_LONG).show();
     }
 
-    //定義方法填充Activity右側的fragment，並通過傳參修改文字內容
-    public void switchButton(int data){
-
-
-    //通過呼叫RightFragment中的getInstance方法傳修改文字
-        FragmentToDB fragmentToDB =FragmentToDB.newInstance(data);
-    //此時使用add方法會造成右側fragment中文字重疊（未設定BackGround時）
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.nav_host_fragment,fragmentToDB)
-            .addToBackStack(null)
-                .commit();
-
+    @Override
+    protected void onStart() {
+        super.onStart();
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        //“內存重啟”時保存當前的fragment名字
+        outState.putInt(CURRENT_FRAGMENT,currentIndex);
+        super.onSaveInstanceState(outState);
+    }
+
+
+
+
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        int id = item.getItemId();
+//        if (id == android.R.id.home) {
+//            if (getSupportFragmentManager().getBackStackEntryCount() != 0) {
+//                getSupportFragmentManager().popBackStack();
+//            }
+//            return true;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 
 }
