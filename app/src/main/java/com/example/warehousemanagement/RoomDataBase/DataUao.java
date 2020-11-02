@@ -1,5 +1,8 @@
 package com.example.warehousemanagement.RoomDataBase;
 
+import android.provider.ContactsContract;
+
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -24,12 +27,12 @@ public interface DataUao {
 
     /**=======================================================================================*/
     /**撈取全部資料*/
-    @Query("SELECT * FROM " + tableName)
-    List<MyData> displayAll();
+    @Query("SELECT * FROM " + tableName + " ORDER BY id  ASC")
+    LiveData<List<MyData>> displayAll();
 
     /**撈取某個名字的相關資料*/
     @Query("SELECT * FROM " + tableName +" WHERE name = :name")
-    List<MyData> findDataByName(String name);
+    LiveData<List<MyData>> findDataByName(String name);
 
     /**=======================================================================================*/
     /**簡易更新資料的方法*/
@@ -49,4 +52,6 @@ public interface DataUao {
     @Query("DELETE  FROM " + tableName + " WHERE id = :id")
     void deleteData(int id);
 
+    @Query("DELETE FROM "+tableName)
+    void deleteAll();
 }

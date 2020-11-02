@@ -22,5 +22,7 @@
     <color name="navy">#000080</color><!--海軍色-->
     <color name="darkblue">#00008B</color><!-- 暗藍色 -->
     <color name="dimblack">#212121</color><!--黑色-->
+    <color name="darkgrey">#696969</color><!--暗灰色-->
+    <color name="mistblue">#C1DDDF</color><!--暗灰色-->
     <!--/============================================/-->
 </resources>

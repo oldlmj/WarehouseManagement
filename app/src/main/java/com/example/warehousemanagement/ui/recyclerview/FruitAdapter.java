@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.warehousemanagement.R;
@@ -22,6 +23,7 @@ import com.example.warehousemanagement.RoomDataBase.MyData;
 import java.util.List;
 
 public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder> {
+    FruitAdapter myAdapter;
     private List<Fruit> mFruitList;
     private List<MyData> myData;
     private Activity activity;
@@ -53,8 +55,7 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder> 
     /**DB更新資料*/
     public void refreshView() {
         new Thread(()->{
-            List<MyData> data = DataBase.getInstance(activity).getDataUao().displayAll();
-            this.myData = data;
+            //this.myData = DataBase.getInstance(activity).getDataUao().displayAll();
             activity.runOnUiThread(() -> {
                 notifyDataSetChanged();
             });
@@ -63,7 +64,7 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder> 
     /**DB刪除資料*/
     public void deleteData(int position){
         new Thread(()->{
-            DataBase.getInstance(activity).getDataUao().deleteData(myData.get(position).getId());
+           // DataBase.getInstance(activity).getDataUao().deleteData(myData.get(position).getId());
             activity.runOnUiThread(()->{
                 notifyItemRemoved(position);
                 refreshView();
@@ -101,6 +102,9 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder> 
         holder.fruitImage.setImageResource(fruit.getImageId());
         holder.fruitName.setText(fruit.getName());
         holder.fruitedHobby.setText(fruit.getName());
+        holder.fruitView.setOnClickListener((v)->{
+           // onItemClickListener.onItemClick(myData.get(position));
+        });
         //onItemClickListener.onItemClick(myData.get(position));
     }
 
@@ -108,13 +112,41 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder> 
     public int getItemCount() {
         return mFruitList.size();
     }
-
-    public FruitAdapter(List<Fruit> fruitList) {
-        mFruitList = fruitList;
-    }
-
+//
+//    public FruitAdapter(List<Fruit> fruitList) {
+//        mFruitList = fruitList;
+//    }
+//
     /**建立對外接口*/
     public interface OnItemClickListener {
         void onItemClick(MyData myData);
     }
+    /**設置RecyclerView的左滑刪除行為*/
+    private void setRecyclerFunction(RecyclerView recyclerView){
+        ItemTouchHelper helper = new ItemTouchHelper(new ItemTouchHelper.Callback() {//設置RecyclerView手勢功能
+            @Override
+            public int getMovementFlags(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
+                return makeMovementFlags(0,ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT);
+            }
+
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                int position = viewHolder.getAdapterPosition();
+                switch (direction){
+                    case ItemTouchHelper.LEFT:
+                    case ItemTouchHelper.RIGHT:
+                        myAdapter.deleteData(position);
+                        break;
+
+                }
+            }
+        });
+        helper.attachToRecyclerView(recyclerView);
+    }
+
 }

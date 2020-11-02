@@ -6,30 +6,38 @@
     android:id="@+id/relativelayout_add_data"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/digray"
+    android:background="@color/mistblue"
 
     >
-            <TextView
-                android:id="@+id/Text_Name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="70dp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="50dp"
-                android:textSize="23dp"
-                android:text="姓名："
-                android:textColor="@color/whith"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-            <EditText
-                android:id="@+id/editText_Name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="53dp"
-                android:layout_toRightOf="@id/Text_Name"
-                android:ems="10"
-                android:inputType="textPersonName" />
 
-            <TextView
+    <TextView
+        android:id="@+id/Text_Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="20dp"
+
+        android:text="姓名："
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/midnightblue"
+        android:textSize="23dp" />
+
+    <EditText
+        android:id="@+id/editText_Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="59dp"
+        android:layout_toRightOf="@id/Text_Name"
+        android:backgroundTint="#FFFFFF"
+        android:ems="10"
+        android:textColor="@color/midnightblue"
+        android:inputType="textPersonName"
+        android:singleLine="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <TextView
                 android:id="@+id/Text_Phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -37,8 +45,9 @@
                 android:textSize="23dp"
                 android:layout_marginBottom="20dp"
                 android:layout_marginLeft="50dp"
-                android:textColor="@color/whith"
+                android:textColor="@color/midnightblue"
                 android:text="電話："
+
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
             <EditText
@@ -48,7 +57,7 @@
                 android:layout_toRightOf="@id/Text_Phone"
                 android:layout_below="@id/editText_Name"
                 android:textSize="23dp"
-                android:textColor="@color/whith"
+                android:textColor="@color/midnightblue"
                 android:ems="10"/>
 
             <TextView
@@ -59,7 +68,7 @@
                 android:layout_marginBottom="20dp"
                 android:layout_marginLeft="50dp"
                 android:textSize="23dp"
-                android:textColor="@color/whith"
+                android:textColor="@color/midnightblue"
                 android:text="興趣："
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
@@ -69,7 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/Text_Hobby"
                 android:layout_below="@id/editText_Phone"
-                android:textColor="@color/whith"
+                android:textColor="@color/midnightblue"
                 android:ems="10"
                 android:inputType="textPersonName" />
 
@@ -79,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/Text_Hobby"
                 android:textSize="23dp"
-                android:textColor="@color/whith"
+                android:textColor="@color/midnightblue"
                 android:layout_marginBottom="20dp"
                 android:layout_marginLeft="50dp"
                 android:text="其他："
@@ -93,7 +102,7 @@
 
                 android:layout_below="@id/editText_Hobby"
 
-                android:textColor="@color/whith"
+                android:textColor="@color/midnightblue"
                 android:ems="10"
                 android:inputType="textPersonName" />
 

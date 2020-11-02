@@ -9,6 +9,7 @@ import  androidx.fragment.app.FragmentManager;
 import  androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -25,6 +26,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -39,14 +41,13 @@ public class MainActivity extends AppCompatActivity  {
     //當前顯示的fragment
     private static final String CURRENT_FRAGMENT = "STATE_FRAGMENT_SHOW";
     private FragmentToDB mFragmentToDB;
-    private Fragment currentFragment = new Fragment();
-    private List<Fragment> fragments = new ArrayList<>();
+   //
+    //private List<Fragment> fragments = new ArrayList<>();
     private int currentIndex = 0;
-    FragmentManager fragmentManager;
+    private NavController navController ;
 
     FruitAdapter fruitAdapter;
     MyData nowSelectedData;//取得在畫面上顯示中的資料內容
-    FloatingActionButton fbtnAdd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,19 +58,40 @@ public class MainActivity extends AppCompatActivity  {
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
+        FloatingActionButton fab=findViewById(R.id.fbtnAdd);
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
                 .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener()
+        {
+            @Override
+            public void onDestinationChanged(@NonNull NavController controller,
+                                             @NonNull NavDestination destination, @Nullable Bundle arguments) {
+                if(destination.getId() == R.id.navigation_home) {
+                    //toolbar.setVisibility(View.GONE);
+                    fab.show();
+                    Toast.makeText(getBaseContext(),destination.getId()+"",Toast.LENGTH_SHORT).show();
+                    //fab.setVisibility(View.GONE);
+                } else {
+                    //toolbar.setVisibility(View.VISIBLE);
+                    Toast.makeText(getBaseContext(),destination.getId()+"",Toast.LENGTH_SHORT).show();
+                    fab.hide();
+                }
+            }
+
+        });
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-
+        Stetho.initializeWithDefaults(this);
    }
+    @Nullable
+
     @Override
     protected void onResume() {
         super.onResume();
-//
-        Toast.makeText(this, "onResume", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "onResume", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -93,21 +115,5 @@ public class MainActivity extends AppCompatActivity  {
         outState.putInt(CURRENT_FRAGMENT,currentIndex);
         super.onSaveInstanceState(outState);
     }
-
-
-
-
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        int id = item.getItemId();
-//        if (id == android.R.id.home) {
-//            if (getSupportFragmentManager().getBackStackEntryCount() != 0) {
-//                getSupportFragmentManager().popBackStack();
-//            }
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
 
 }

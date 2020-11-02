@@ -1,10 +1,11 @@
 package com.example.warehousemanagement.RoomDataBase;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "MyTable")//這邊要先取好table的名字，稍後的table設置必須與他相同
+@Entity(tableName = "MyTable")
 public class MyData {
 
 
@@ -14,7 +15,9 @@ public class MyData {
     private String phone;
     private String hobby;
     private String elseInfo;
-
+    public MyData(@NonNull String word) {
+        this.name = word;
+    }
     public MyData(String name, String phone, String hobby, String elseInfo) {
         this.name = name;
         this.phone = phone;
