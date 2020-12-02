@@ -37,6 +37,7 @@ public class HomeFragment extends Fragment {
     private List<Fruit> fruitList = new ArrayList<>();
     private HomeViewModel homeViewModel;
     private RecyclerView mRcyclerView;
+    private FloatingActionButton fab;
     public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
 
     @Override
@@ -60,6 +61,12 @@ public class HomeFragment extends Fragment {
         mRcyclerView = root.findViewById(R.id.recycler_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        myAdapter.setOnItemclickListener(new MyAdapter.OnItemClickListener() {
+            @Override
+            public void onItemclick(RecyclerView parent, View view, int position, String data) {
+                Toast.makeText(getActivity(),"這是第 "+data,Toast.LENGTH_LONG).show();
+            }
+        });
         mRcyclerView.setAdapter(myAdapter);
         mRcyclerView.setLayoutManager(layoutManager);
         mRcyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));//設置分隔線
@@ -74,7 +81,7 @@ public class HomeFragment extends Fragment {
                 myAdapter.notifyDataSetChanged();
             }
         });
-        FloatingActionButton fab =getActivity().findViewById(R.id.fbtnAdd);
+        fab =getActivity().findViewById(R.id.fbtnAdd);
         //FAB 點擊事件，跳轉新增資料列介面
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,6 +93,7 @@ public class HomeFragment extends Fragment {
                 startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);
                           }
         });
+
 
         return root;
     }
@@ -116,4 +124,5 @@ public class HomeFragment extends Fragment {
     public void onPause() {
         super.onPause();
     }
+
 }
